@@ -1,7 +1,7 @@
-package kr.co.modaoutlet.mgr.employee.application.port.`in`
+package com.dohyundev.review.employee.application.port.`in`
 
-import kr.co.modaoutlet.mgr.employee.application.dto.UpdateEmployeeCommand
-import kr.co.modaoutlet.mgr.employee.domain.Employee
+import com.dohyundev.review.employee.domain.dto.UpdateEmployeeCommand
+import com.dohyundev.review.employee.domain.entity.Employee
 
 interface UpdateEmployeeUseCase {
     fun update(id: Long, command: UpdateEmployeeCommand): Employee

@@ -1,7 +1,8 @@
-package kr.co.modaoutlet.mgr.employee.application.port.`in`
+package com.dohyundev.review.employee.application.port.`in`
 
-import kr.co.modaoutlet.mgr.employee.application.dto.ChangePasswordCommand
+import com.dohyundev.review.employee.domain.dto.ChangePasswordCommand
+import com.dohyundev.review.employee.domain.entity.Employee
 
 interface ChangePasswordUseCase {
-    fun changePassword(id: Long, command: ChangePasswordCommand)
+    fun changePassword(id: Long, command: ChangePasswordCommand): Employee
 }
