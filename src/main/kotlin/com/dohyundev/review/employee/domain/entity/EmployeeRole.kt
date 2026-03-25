@@ -1,4 +1,4 @@
-package kr.co.modaoutlet.mgr.employee.domain
+package com.dohyundev.review.employee.domain.entity
 
 enum class EmployeeRole(
     val displayName: String,
