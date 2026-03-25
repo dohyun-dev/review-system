@@ -1,7 +1,7 @@
-package kr.co.modaoutlet.mgr.employee.domain.exception
+package com.dohyundev.review.employee.domain.exception
 
 import java.util.NoSuchElementException
 
 class EmployeeNotFoundException(
-    message: String = "직원이 존재하지 않습니다."
+    message: String = "사원이 존재하지 않습니다."
 ) : NoSuchElementException(message)
