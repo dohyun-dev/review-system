@@ -42,6 +42,10 @@ class DepartmentMemberCommandService(
             throw DuplicateDepartmentMemberException()
         }
 
+        if (command.type == DepartmentMemberType.PRIMARY) {
+            validatePrimaryDuplicate(command.employeeId)
+        }
+
         val member = DepartmentMember.create(
             department = department,
             employee = employee,
@@ -60,10 +64,7 @@ class DepartmentMemberCommandService(
             .orElseThrow { NoSuchElementException("직책이 존재하지 않습니다.") }
 
         if (command.type == DepartmentMemberType.PRIMARY) {
-            val existingPrimary = departmentMemberRepository.findByEmployeeIdAndType(member.employee.id!!, DepartmentMemberType.PRIMARY)
-            if (existingPrimary.isPresent && existingPrimary.get().id != id) {
-                throw AlreadyPrimaryDepartmentExistsException()
-            }
+            validatePrimaryDuplicate(member.employee.id!!, excludeMemberId = id)
         }
 
         member.update(duty = duty, type = command.type)
@@ -76,5 +77,12 @@ class DepartmentMemberCommandService(
             .orElseThrow { DepartmentMemberNotFoundException() }
 
         departmentMemberRepository.delete(member)
+    }
+
+    private fun validatePrimaryDuplicate(employeeId: Long, excludeMemberId: Long? = null) {
+        val existingPrimary = departmentMemberRepository.findByEmployeeIdAndType(employeeId, DepartmentMemberType.PRIMARY)
+        if (existingPrimary.isPresent && existingPrimary.get().id != excludeMemberId) {
+            throw AlreadyPrimaryDepartmentExistsException()
+        }
     }
 }

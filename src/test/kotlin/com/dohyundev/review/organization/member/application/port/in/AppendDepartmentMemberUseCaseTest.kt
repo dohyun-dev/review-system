@@ -7,6 +7,7 @@ import com.dohyundev.review.organization.member.application.port.dto.AppendDepar
 import com.dohyundev.review.organization.member.application.port.out.DepartmentMemberRepository
 import com.dohyundev.review.organization.member.application.port.service.DepartmentMemberCommandService
 import com.dohyundev.review.organization.member.domain.entity.DepartmentMemberType
+import com.dohyundev.review.organization.member.domain.exception.AlreadyPrimaryDepartmentExistsException
 import com.dohyundev.review.organization.member.domain.exception.DuplicateDepartmentMemberException
 import com.dohyundev.review.organization.member.fixture.DepartmentMemberFixture
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -91,6 +92,24 @@ class AppendDepartmentMemberUseCaseTest {
 
         assertThrows<NoSuchElementException> {
             departmentMemberCommandService.append(command)
+        }
+    }
+
+    @Test
+    fun `이미 주부서가 존재하는 사원을 주부서로 추가하면 AlreadyPrimaryDepartmentExistsException을 던진다`() {
+        val employee = employeeRepository.save(DepartmentMemberFixture.createEmployee())
+        val duty = dutyRepository.save(DepartmentMemberFixture.createDuty())
+        val dept1 = departmentRepository.save(DepartmentMemberFixture.createDepartment(name = "개발팀"))
+        val dept2 = departmentRepository.save(DepartmentMemberFixture.createDepartment(name = "기획팀"))
+
+        departmentMemberCommandService.append(AppendDepartmentMemberCommand(
+            departmentId = dept1.id!!, employeeId = employee.id!!, dutyId = duty.id!!, type = DepartmentMemberType.PRIMARY,
+        ))
+
+        assertThrows<AlreadyPrimaryDepartmentExistsException> {
+            departmentMemberCommandService.append(AppendDepartmentMemberCommand(
+                departmentId = dept2.id!!, employeeId = employee.id!!, dutyId = duty.id!!, type = DepartmentMemberType.PRIMARY,
+            ))
         }
     }
 }
