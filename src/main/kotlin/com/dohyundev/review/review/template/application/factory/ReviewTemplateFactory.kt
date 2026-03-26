@@ -1,6 +1,6 @@
 package com.dohyundev.review.review.template.application.factory
 
-import com.dohyundev.review.review.template.application.port.dto.CreateReviewTemplateCommand
+import com.dohyundev.review.review.template.application.dto.CreateReviewTemplateCommand
 import com.dohyundev.review.review.template.domain.ReviewTemplate
 import org.springframework.stereotype.Component
 

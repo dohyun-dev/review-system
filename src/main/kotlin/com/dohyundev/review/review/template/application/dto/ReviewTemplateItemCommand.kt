@@ -1,4 +1,4 @@
-package com.dohyundev.review.review.template.application.port.dto
+package com.dohyundev.review.review.template.application.dto
 
 import com.fasterxml.jackson.annotation.JsonSubTypes
 import com.fasterxml.jackson.annotation.JsonTypeInfo
