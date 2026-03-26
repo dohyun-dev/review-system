@@ -1,10 +1,10 @@
 package com.dohyundev.review.review.template.application.port.`in`
 
-import com.dohyundev.review.review.template.application.port.dto.ReviewTemplateItemCommand
-import com.dohyundev.review.review.template.application.port.dto.ReviewTemplateSectionCommand
-import com.dohyundev.review.review.template.application.port.dto.UpdateReviewTemplateFormCommand
+import com.dohyundev.review.review.template.application.dto.ReviewTemplateItemCommand
+import com.dohyundev.review.review.template.application.dto.ReviewTemplateSectionCommand
+import com.dohyundev.review.review.template.application.dto.UpdateReviewTemplateFormCommand
 import com.dohyundev.review.review.template.application.port.out.ReviewTemplateRepository
-import com.dohyundev.review.review.template.application.port.service.ReviewTemplateCommandService
+import com.dohyundev.review.review.template.application.service.ReviewTemplateCommandService
 import com.dohyundev.review.review.template.domain.exception.ReviewTemplateNotFoundException
 import com.dohyundev.review.review.template.fixture.ReviewTemplateFixture
 import org.junit.jupiter.api.Assertions.assertEquals

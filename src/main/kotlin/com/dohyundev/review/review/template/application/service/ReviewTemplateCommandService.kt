@@ -1,10 +1,10 @@
-package com.dohyundev.review.review.template.application.port.service
+package com.dohyundev.review.review.template.application.service
 
 import com.dohyundev.review.review.template.application.factory.ReviewTemplateFactory
 import com.dohyundev.review.review.template.application.factory.ReviewTemplateSectionFactory
-import com.dohyundev.review.review.template.application.port.dto.CreateReviewTemplateCommand
-import com.dohyundev.review.review.template.application.port.dto.UpdateReviewTemplateCommand
-import com.dohyundev.review.review.template.application.port.dto.UpdateReviewTemplateFormCommand
+import com.dohyundev.review.review.template.application.dto.CreateReviewTemplateCommand
+import com.dohyundev.review.review.template.application.dto.UpdateReviewTemplateCommand
+import com.dohyundev.review.review.template.application.dto.UpdateReviewTemplateFormCommand
 import com.dohyundev.review.review.template.application.port.`in`.CreateReviewTemplateUseCase
 import com.dohyundev.review.review.template.application.port.`in`.DeleteReviewTemplateUseCase
 import com.dohyundev.review.review.template.application.port.`in`.UpdateFormReviewTemplateUseCase

@@ -1,4 +1,4 @@
-package com.dohyundev.review.review.template.application.port.dto
+package com.dohyundev.review.review.template.application.dto
 
 import jakarta.validation.Valid
 import jakarta.validation.constraints.NotBlank
