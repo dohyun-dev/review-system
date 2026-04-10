@@ -4,6 +4,7 @@ plugins {
     id("org.springframework.boot") version "4.0.4"
     id("io.spring.dependency-management") version "1.1.7"
     kotlin("plugin.jpa") version "2.2.21"
+    kotlin("kapt") version "2.2.21"
 }
 
 group = "com.dohyundev"
@@ -34,6 +35,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-webmvc")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("tools.jackson.module:jackson-module-kotlin")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.0.2")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     developmentOnly("org.springframework.boot:spring-boot-docker-compose")
     runtimeOnly("com.mysql:mysql-connector-j")
@@ -45,11 +47,33 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testRuntimeOnly("com.h2database:h2")
+    testImplementation("io.mockk:mockk:1.14.0")
+
+    implementation("io.hypersistence:hypersistence-utils-hibernate-71:3.14.1")
+
+    implementation("io.jsonwebtoken:jjwt-api:0.12.5")
+    runtimeOnly("io.jsonwebtoken:jjwt-impl:0.12.5")
+    runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.12.5")
+
+    implementation("org.mapstruct:mapstruct:1.6.3")
+    kapt("org.mapstruct:mapstruct-processor:1.6.3")
+    kaptTest("org.mapstruct:mapstruct-processor:1.6.3")
+
+    implementation("io.github.openfeign.querydsl:querydsl-jpa:7.0")
+    kapt("io.github.openfeign.querydsl:querydsl-apt:7.0:jpa")
 }
 
 kotlin {
     compilerOptions {
         freeCompilerArgs.addAll("-Xjsr305=strict", "-Xannotation-default-target=param-property")
+    }
+}
+
+kapt {
+    correctErrorTypes = true
+    arguments {
+        arg("mapstruct.defaultComponentModel", "spring")
     }
 }
 

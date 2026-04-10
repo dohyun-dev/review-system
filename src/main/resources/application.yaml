@@ -1,3 +1,25 @@
 spring:
   application:
     name: review-system
+
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+    properties:
+      hibernate:
+        default_batch_fetch_size: 100
+        format_sql: true
+        highlight_sql: true
+        show_sql: true
+        jdbc.batch_size: 100
+        order_inserts: true
+        order_updates: true
+
+auth:
+  token:
+    secret: aGVsbG93b3JsZGhlbGxvd29ybGRoZWxsb3dvcmxkMTIz
+    access-token-expiration: 1h
+    refresh-token-expiration: 7d
